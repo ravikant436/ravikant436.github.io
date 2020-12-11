@@ -1,16 +1,12 @@
-/*
-Theme Name: Free-Portfolio-HTML5-Responsive-Website-Sam
-Author URI: http://webthemez.com/ 
-*/
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
 * {
 	margin: 0;
 	padding: 0;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Noto Sans', sans-serif;
 }
 body {
 	font-size: 14px;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Noto Sans', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	background: #fff;
 }
@@ -111,15 +107,17 @@ a:hover {
 h2 {
 	font-size: 40px;
 	margin: 0;
-	padding-bottom: 16px;
 	font-variant: small-caps;
+}
+h1, h2, h3 {
+	margin: 0;
 }
 /* Header 
 ----------------------------------------------*/
 .header {
 	position: fixed;
 	width: 100%;
-	background: transpreant;
+	background: #000;
 	z-index: 50;
 	border-radius: 0;
 	top: 0px;
@@ -225,6 +223,12 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 }
 .logo:hover {
 	color: #5A5A5A;
+}
+.header_logo {
+	float: left;
+	font-size: 30px;
+	color: #fff;
+	margin-top: 16px;
 }
 .header .navbar {
 	margin: 0;
@@ -420,7 +424,7 @@ float: none;
 .heading {
 	padding: 3px 10px;
 	padding-bottom: 15px;
-	margin-bottom: 30px;
+	margin-bottom: 10px;
 	display: block;
 }
 .pdingBtm30 {
@@ -451,7 +455,7 @@ float: none;
 	border: 2px solid rgba(255, 255, 255, 0.6);
 }
 .secPad {
-	padding: 60px 0;
+	padding: 50px 0;
 }
 /*Intro Content*/
 #introText {
@@ -470,26 +474,31 @@ float: none;
 	font-size: 16px;
 }
 #aboutUs{
-padding:60px 0;	
-	}
+	padding:60px 0;	
+	margin-top:60px;
+}
 #aboutUs .txtHead {
 	background: #fff;
-	padding: 20px 10px;
+	padding: 20px 10px 10px;
 }
 #aboutUs .txtHead .fa {
 	font-size: 58px;
 	color: #5E5E5E;
 }
+#aboutUs .txtHead h2 {
+	color: rgb(52, 152, 219);
+}
 .tileBox img{
-overflow:hidden;
-border-radius:120px;
-width:300px;
-box-shadow: 12px 0px 0px 12px rgba(13, 113, 165, 0.2), -12px 0px 0px 12px rgba(109, 139, 232, 0.2);
+	overflow:hidden;
+	border-radius:50%;
+	width:250px;
+	height: 250px;
+	box-shadow: 3px 0px 0px 3px rgba(0, 0, 0, 0.6), -3px 0px 0px 3px rgba(0, 0, 0, 0.6);
 }
 .tileBox p { 
 	font-size: 15px;
-	color: #777777;
-	padding: 20px;
+	color: #333;
+	padding: 10px;
 	margin: 0px;
 }
 /*parlex*/
@@ -744,7 +753,21 @@ a.current {
 }
 .portfolio-items article img {
 	width: 100%;
+	opacity: 0.7;
 }
+
+.article-heading {
+	position: absolute;
+	top: 0;
+	background: rgba(61, 61, 61, 0.67);
+	color: #fff;
+	padding: 15px 10px;
+	text-align: center;
+	width: 100%;
+	z-index: 2;
+	font-size: 1.4em;
+}
+
 .portfolio-item {
 	display: block;
 	position: relative;
@@ -811,6 +834,11 @@ a.current {
 	color: #ffffff;
 	font-size: 12px;
 }
+
+.portfolio-item .portfolio-desc .folio-info a {
+	font-size: 18px;
+}
+
 .page-section.intro {
 	min-height: 600px;
 }
@@ -992,7 +1020,7 @@ color: #000;
 }
 .txtHead {
     background: none repeat scroll 0% 0% #FFF;
-    padding: 20px 10px;
+    padding: 20px 10px 10px;
 }
 .txtHead .fa {
     font-size: 58px;
