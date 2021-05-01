@@ -1,0 +1,166 @@
+body {
+	font-family: calibri;
+	color: #333;
+}
+
+.header {
+	margin-top: 20px;
+	padding: 10px;
+	border-bottom: 2px solid #efefef;
+}
+
+.header h1 {
+	margin-bottom: 5px;
+}
+
+.period-maps-container {
+	border: 1px solid #efefef;
+	margin: 10px;
+	overflow-x:scroll;
+}
+
+.period-maps-container .mapping-table {
+	width: 2500px;
+}
+
+.mapping-table td {
+	width: 500px;
+	border-right: 1px solid #d0d0d0;
+	position: relative;
+}
+
+.head-tr td{
+	text-align: center;
+	padding: 10px;
+	border-bottom: 1px solid #efefef;
+	background: #f78923;
+	font-weight: bold;
+	color: #fff;
+	font-size: 14px;
+}
+
+.content-tr td {
+	height: 320px;
+	padding: 10px none;
+}
+
+.period-cluster-box {
+	height: 300px;
+	width: 450px;
+	position: absolute;
+	top: 10px;
+	left: 25px;
+	background: #efefef;
+	border: 1px solid #efefef;
+}
+
+.period-btn-grp {
+	text-align: left;
+	position: absolute;
+	width: 100%;
+	top: 15px;
+	left: 25px;
+}
+
+.period-btn-grp .btn {
+	font-family: calibri;
+}
+
+.modal-dialog {
+	width: 1000px !important;
+}
+
+.modal-content {
+	max-height: 700px !important;
+}
+
+#symbol_table {
+	font-size: 14px;
+	letter-spacing: 1px;
+	width: 250px;
+	padding: 10px;
+	border: 1px solid #d0d0d0;
+	position: absolute;
+	left: 600px;
+}
+
+.show-time-series {
+	margin: 20px;
+}
+
+.time-series-container {
+	margin: 20px;
+	display: none;
+}
+
+.time-series-table {
+	width: 2400px;
+}
+
+.time-series-table td {
+	width: 300px;
+	border-right: 1px solid #efefef;
+}
+
+.time-series-table .content-tr {
+	border-bottom: 1px solid #a0a0a0;
+}
+
+.time-series-table .content-tr td {
+	text-align: center;
+	font-size: 12px;
+	padding-top: 30px;
+}
+
+.time-series-table .series-item-nodes {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	border: 1px solid #a0a0a0;
+	background: pink;
+	color: #333;
+	text-transform: capitalize;
+	font-size: 10px;
+	padding-top: 64px;
+	text-align: center;
+	margin: 10px auto;
+}
+
+.time-series-table .series_break {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+}
+
+.series-item-cen {
+	margin: 0;
+}
+
+/* Any chart library css class over-riding */
+.anychart-credits-logo {
+	opacity: 0;
+}
+
+.anychart-credits-text {
+	color: #fff;
+}
+
+text {
+	cursor: pointer !important;
+}
+
+.anychart-menu-vertical {
+	position: absolute !important;
+	left: 300px !important;
+	top: 200px !important;
+	z-index: 10000000 !important;
+}
+
+#cluster_view > div {
+	width: 950px !important;
+	height: 550px !important;
+}
+
+#cluster_view svg {
+	width: 950px !important;
+}

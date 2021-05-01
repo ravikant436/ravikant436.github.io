@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Mapping of Clusters</title>
+		<link rel="stylesheet" type="text/css" href="styles.css"/>
+		<!-- Anychart libraries-->
+		<script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+		<script src="https://cdn.anychart.com/releases/v8/js/anychart-graph.min.js"></script>
+		<script src="https://cdn.anychart.com/releases/v8/js/anychart-data-adapter.min.js"></script>
+		<script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+		<script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+		<link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
+		<!-- Word cloud libraries -->
+		<script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+		<!-- Bootstrap libraries -->
+		<script src="https://kit.fontawesome.com/14c3933906.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<script src="scripts.js"></script>
+		<script src="graph.js"></script>
+		<script src="series.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="header">
+				<h1>Cluster Mapping</h1>
+			</div>
+			<div class="period-maps-container">
+				<table class="mapping-table">
+					<tr class="head-tr">
+						<td>T1</td>
+						<td>T2</td>
+						<td>T3</td>
+						<td>T4</td>
+						<td>T5</td>
+					</tr>
+					<tr class="content-tr">
+						<td><div class="period-cluster-box" id="T1"></div><div class="period-btn-grp"></div></td>
+						<td><div class="period-cluster-box" id="T2"></div><div class="period-btn-grp"></div></td>
+						<td><div class="period-cluster-box" id="T3"></div><div class="period-btn-grp"></div></td>
+						<td><div class="period-cluster-box" id="T4"></div><div class="period-btn-grp"></div></td>
+						<td><div class="period-cluster-box" id="T5"></div><div class="period-btn-grp"></div></td>		
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
+
+<!-- https://anychart.medium.com/how-to-create-javascript-word-cloud-chart-tutorial-for-web-developers-7ccf12a37513 -->
