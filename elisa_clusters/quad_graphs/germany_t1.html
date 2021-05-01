@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <body>
+  <head>
+	<title>Quadrant Graph</title>
+	<style type="text/css">
+		body{
+			font-family: 'Calibri'
+		}
+		#symbol_table {
+			font-size: 14px;
+			letter-spacing: 1px;
+			width: 250px;
+			padding: 5px;
+			border: 1px solid #d0d0d0;
+			position: absolute;
+			left: 900px;
+			top: 20px;
+		}
+	</style>
+  </head>
+  <div style="width: 1000px; margin: 50px auto">
+	<div id="symbol_table">
+	</div>
+	<div>
+		<canvas id="myCanvas" width="800" height="800"
+		style="margin:auto;">
+		Your browser does not support the canvas element.
+		</canvas>
+	</div>
+  </div>
+
+  <script>
+	cluster_labels = ['scipy', 'cad', 'pmp', 'development', 'j2ee'],
+	centrality_arr = [1.674031941836287, 0.208083341239854, 0.133632370229507, 1.730039517866891, 0.35985761603478705],
+    density_arr = [1.0, 1.0, 1.0, 0.055292818225282, 0.5750000000000001],
+	cluster_sizes = [4, 2, 2, 286, 5]
+
+	/*cluster_labels = ['perl','microservices','big-data','html','elasticsearch']
+	cluster_sizes = [18, 3, 4, 3, 3]
+	centrality_arr = [0.0633,0.103,0.07, 0.039,0.14545417,0,0]
+	density_arr = [0.2, 0.2185,0.094, 0.4637,0.1911801,0.103,0.042 ]*/
+	
+    const median = arr => {
+      const mid = Math.floor(arr.length / 2),
+        nums = [...arr].sort((a, b) => a - b);
+      return arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
+    };
+	color_set = ['rgba(0,255,0,0.8)', 'rgba(0,0,255,0.8)', 
+				 'rgba(135, 232, 229,0.8)', 'rgba(0,0,0,0.8)',
+				 'rgba(154, 232, 65, 0.8)', 'rgba(230, 7, 118)','rgba(63, 16, 74, 0.8)',
+				 'rgba(250,250, 250, 0.8', 'orange', 'magenta', 'pink', 'gray']
+				 
+				 /*
+				 1 - 'rgba(255,0,0,0.8)', 
+				 4 - 'rgba(245, 239, 66,0.8)', 
+				 */
+	
+	median_centrality = median(centrality_arr)
+	max_cen = Math.max(...centrality_arr)
+	
+	median_density = median(density_arr)
+	max_den = Math.max(...density_arr)
+	
+	// Create Side colorful area
+	table_data = "<table>"
+	for(i = 0; i<cluster_labels.length; i++){
+		table_data += "<tr><td style='padding-right:5px;'><div style='width:15px;height:15px;border-radius:50%;background:" + color_set[i] + "'></div></td><td style='text-transform: capitalize;'>" +  cluster_labels[i] + "</td>"
+	}
+	table_data += "</table>"
+	
+	table_data += "<div style='margin-top:10px;'><b>Median Centrality: </b>" + median_centrality + "</div>"
+	table_data += "<div><b>Median Density: </b>" + median_density + "</div>"
+	document.getElementById('symbol_table').innerHTML = table_data
+	
+	// drawing graph
+	smallest_cluster_size = Math.min(...cluster_sizes)
+	
+	if (max_cen > max_den) {
+		max_param = max_cen
+	}
+	else {
+		max_param = max_den
+	} 
+	//console.log(median_centrality) //.24
+	//console.log(median_density) //.29
+    // CanVas Drawing
+    var canvas = document.getElementById("myCanvas");
+
+    var ctx = canvas.getContext("2d");
+
+    // Drawing X and y axis
+    ctx.strokeStyle = '#000'
+    ctx.moveTo(50,0)
+    ctx.lineTo(50,750)
+    ctx.stroke()
+
+    ctx.moveTo(0,700)
+    ctx.lineTo(750,700)
+    ctx.stroke()
+
+	
+    // Add markers
+    ctx.font = "15px Calibri";
+    ctx.strokeText("Centrality", 350, 740)
+	ctx.strokeText("Density", 0, 390)
+	
+	cen_stroke_num = Math.ceil(max_cen/0.1) + 1
+	cen_stroke_dist = Math.ceil(700/cen_stroke_num)
+	
+	den_stroke_num = Math.ceil(max_den/0.1) + 1
+	den_stroke_dist = Math.ceil(700/den_stroke_num)
+	
+	//stroke_num = Math.ceil(max_param/0.1) + 1
+	//stroke_dist = Math.ceil(700/stroke_num)
+	
+	x_origin = 50
+	y_origin = 700
+	
+	// x -axis
+	for (i=0; i<cen_stroke_num; i++) {
+		ctx.font = "12px Calibri";
+		tick_label = (i/10).toString()
+		ctx.strokeText(tick_label, x_origin, 720)	// x axis
+		x_origin = x_origin + cen_stroke_dist
+	}
+	
+	// y -axis
+	for (i=0; i<den_stroke_num; i++) {
+		ctx.font = "12px Calibri";
+		tick_label = (i/10).toString()
+		ctx.strokeText(tick_label, 20, y_origin)	// y axis
+		y_origin = y_origin - den_stroke_dist
+	}
+	
+	/*for (i=0; i<stroke_num; i++) {
+		ctx.font = "12px Calibri";
+		tick_label = (i/10).toString()
+		ctx.strokeText(tick_label, x_origin, 720)	// x axis
+		ctx.strokeText(tick_label, 20, y_origin)   // y axis
+		x_origin = x_origin + stroke_dist
+		y_origin = y_origin - stroke_dist
+	}*/
+	
+
+    // Drawing Co-ordinate dashed lines
+	if(max_cen == 0) {
+		x_unit_value = 0
+	} else {
+		x_unit_value = 7/max_cen		// pixels in 0.01 value
+	}
+	y_unit_value = 5/max_den
+	x_origin = (x_unit_value * median_centrality * 100) + 50
+	y_origin = 700 - (y_unit_value * median_density * 100)
+	
+    ctx.setLineDash([5, 2])
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = '#a0a0a0'
+	
+	// y dotted
+    ctx.moveTo(x_origin,0);
+    ctx.lineTo(x_origin,700);
+    ctx.stroke();
+
+    ctx.moveTo(50,y_origin);
+    ctx.lineTo(750,y_origin);
+    ctx.stroke();
+
+
+    // Drawing circles
+    ctx.strokeStyle = 'black'
+    ctx.strokeStyle = '#a0a0a0'
+    ctx.setLineDash([])
+	
+	for (i = 0; i < density_arr.length; i++) {
+	  radius = 20 + (cluster_sizes[i] - smallest_cluster_size)*5
+	  if(radius > 135) {
+		radius = 135
+	  }
+	  x_center = (x_unit_value * 100 * centrality_arr[i]) + 50
+	  y_center = 700 - (y_unit_value * 100 * density_arr[i])
+	  ctx.beginPath();
+	  ctx.arc(x_center, y_center, radius, 0, 2 * Math.PI);
+	  ctx.fillStyle = color_set[i];
+	  ctx.fill();
+	  ctx.stroke();
+	}
+
+
+  </script>
+
+  </body>
+</html>
