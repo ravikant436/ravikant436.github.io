@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-graph.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-data-adapter.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
+    <style type="text/css">
+
+      html,
+      body,
+      #container {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div id="container"></div>
+
+
+    <script>
+
+      anychart.onDocumentReady(function () {
+        anychart.data.loadJsonFile(
+        // The data used in this sample can be obtained from the CDN
+        'jsonDataFiles/germany_t5.json',
+          function (data) {
+          // create graph chart
+		  // in case you have more than 15 clusters, just add more colors in group_colors Array
+            var group_colors = ['rgba(0,0,0,0.2)', '#f21111', '#bfbf11', '#3eeb3b', '#0fe3f2', '#0b5dd9', '#852deb', '#c70ee3', '#e30e63', '#0ee367', '#141715', '#023b37', '#470c12', '#3b6136', '#8debf7']
+            var chart = anychart.graph(data);
+            // set settings for each group
+			// category 0 is for noise nodes, keep i = 0, if you want to include noise nodes
+			// <=n ; where n is the highest label of category
+            for (var i = 1; i <= 5; i++) {
+              console.log(group_colors[i])
+            // get group
+              var group = chart.group(i);
+
+              // set group labels settings
+              group
+              .labels()
+              .enabled(true)
+              .anchor('left-center')
+              .position('right-center')
+              .padding(0, -10)
+              .fontColor(group_colors[i]);
+
+              // set group nodes stroke and fill
+              group.stroke(group_colors[i]);
+              group.fill(group_colors[i]);
+            }
+
+            // set container id for the chart
+            chart.container('container');
+            // initiate chart drawing
+            chart.draw();
+          }
+        );
+      });
+
+    </script>
+  </body>
+</html>
